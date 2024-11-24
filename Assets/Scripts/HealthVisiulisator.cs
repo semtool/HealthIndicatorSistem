@@ -1,109 +1,93 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class HealthVisiulisator : MonoBehaviour
 {
     [SerializeField] private Button _pillButton;
     [SerializeField] private Button _damageButton;
     [SerializeField] private TextMeshProUGUI _textMesh;
-    [SerializeField] private Slider _healsBar;
-    [SerializeField] private Slider _healsSmoothBar;
+    [SerializeField] private Slider _healthBar;
+    [SerializeField] private Slider _healthSmoothBar;
 
     private PillSimulator _pillSimulator;
     private DamageSimulator _damageSimulator;
-    private Coroutine _coroutine;
+    private HealthSmoothBar _smoothBar;
     private float _maxHealth = 100;
     private float _minHealth = 0;
     private float _currentHealth = 100;
+    private float _volueMultiplier = 0.01f;
 
     private void Awake()
     {
         _pillSimulator = _pillButton.GetComponent<PillSimulator>();
         _damageSimulator = _damageButton.GetComponent<DamageSimulator>();
+        _smoothBar = _healthSmoothBar.GetComponent<HealthSmoothBar>();
     }
 
     private void Start()
     {
-        _healsBar.value = _currentHealth;
-        _healsSmoothBar.value = _currentHealth;
+        _healthBar.value = SetCurrentBarVolue();
 
-        ShowHealthRatio();
+        _healthSmoothBar.value = SetCurrentBarVolue();
+
+        ShowHealthStatus();
     }
 
     private void OnEnable()
     {
-        _pillSimulator.AmountChanged += IncreaseHealth;
-        _damageSimulator.AmountChanged += DecreaseHealth;
+        _pillSimulator.HealthChanged += IncreaseHealth;
+        _damageSimulator.HealthChanged += DecreaseHealth;
     }
 
     private void OnDisable()
     {
-        _pillSimulator.AmountChanged -= IncreaseHealth;
-        _damageSimulator.AmountChanged -= DecreaseHealth;
+        _pillSimulator.HealthChanged -= IncreaseHealth;
+        _damageSimulator.HealthChanged -= DecreaseHealth;
     }
 
     private void IncreaseHealth()
     {
-        _currentHealth += _pillSimulator.Pill;
+        _currentHealth += _pillSimulator.PieceOfHealth;
 
         if (_currentHealth > _maxHealth)
         {
             _currentHealth = _maxHealth;
         }
 
-        ShowHealthRatio();
+        ShowHealthStatus();
 
         ChangeBarView();
     }
 
     private void DecreaseHealth()
     {
-        _currentHealth -= _damageSimulator.Damage;
+        _currentHealth -= _damageSimulator.PieceOfHealth;
 
         if (_currentHealth < _minHealth)
         {
             _currentHealth = _minHealth;
         }
 
-        ShowHealthRatio();
+        ShowHealthStatus();
 
         ChangeBarView();
     }
 
-    private void ShowHealthRatio()
+    private void ShowHealthStatus()
     {
         _textMesh.text = _currentHealth.ToString() + " / " + _maxHealth.ToString();
     }
 
     private void ChangeBarView()
     {
-        _healsBar.value = _currentHealth * 0.01f;
+        _healthBar.value = SetCurrentBarVolue();
 
-        ChangeSmoothBarView(_healsBar.value);
+        _smoothBar.ChangeSmoothBarView(_healthBar.value);
     }
 
-    private void ChangeSmoothBarView(float target)
+    private float SetCurrentBarVolue()
     {
-        if (_coroutine != null)
-        {
-            StopCoroutine(_coroutine);
-        }
-
-        _coroutine = StartCoroutine(Move(target));
-    }
-
-    private IEnumerator Move(float target)
-    {
-        while (_healsSmoothBar.value != target)
-        {           
-            _healsSmoothBar.value = Mathf.MoveTowards(_healsSmoothBar.value, target, 0.2f * Time.deltaTime);
-
-            yield return null;
-        }
+        return _currentHealth * _volueMultiplier;
     }
 }
