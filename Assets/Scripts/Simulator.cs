@@ -11,20 +11,23 @@ public  abstract class Simulator : MonoBehaviour
 
     public float PieceOfHealth { get; private set; }
 
+    private void Awake()
+    {
+        PieceOfHealth = _pieceOfHealth;
+    }
+
     private void OnEnable()
     {
-        _button.onClick.AddListener(SetPieceOfHealth);
+        _button.onClick.AddListener(UsePieceOfHealth);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(SetPieceOfHealth);
+        _button.onClick.RemoveListener(UsePieceOfHealth);
     }
 
-    public void SetPieceOfHealth()
+    private void UsePieceOfHealth()
     {
-        PieceOfHealth  = _pieceOfHealth;
-
         HealthChanged?.Invoke();
     }
 }

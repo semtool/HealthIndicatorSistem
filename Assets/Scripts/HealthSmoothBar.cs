@@ -6,6 +6,11 @@ public class HealthSmoothBar : HealthScale
     private Coroutine _coroutine;
     private float _volueStep = 0.2f;
 
+    public override void ChangeBarView()
+    {
+        ChangeSmoothBarView(GetCurrentBarVolue());
+    }
+
     public void ChangeSmoothBarView(float targetVolue)
     {
         if (_coroutine != null)
@@ -16,11 +21,11 @@ public class HealthSmoothBar : HealthScale
         _coroutine = StartCoroutine(Move(targetVolue));
     }
 
-    private IEnumerator Move(float targetVolue)
+    private IEnumerator Move(float targetValue)
     {
-        while (BarScale.value != targetVolue)
+        while (_barScale.value != targetValue)
         {
-            BarScale.value = Mathf.MoveTowards(BarScale.value, targetVolue, _volueStep * Time.deltaTime);
+            _barScale.value = Mathf.MoveTowards(_barScale.value, targetValue, _volueStep * Time.deltaTime);
 
             yield return null;
         }
