@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textMesh: {fileID: 112885620}
-  _health: {fileID: 1234085398}
+  _health: {fileID: 1234085401}
 --- !u!114 &112885624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1a02bdfe549f54e8e16ff365a55408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pillButton: {fileID: 1411796490}
-  _damageButton: {fileID: 231378143}
+  _pillSimulator: {fileID: 1411796494}
+  _damageSimulator: {fileID: 231378142}
 --- !u!1 &176592831
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _barScale: {fileID: 397293058}
-  _health: {fileID: 1234085398}
+  _health: {fileID: 1234085401}
 --- !u!114 &397293058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1a02bdfe549f54e8e16ff365a55408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pillButton: {fileID: 1411796490}
-  _damageButton: {fileID: 231378143}
+  _pillSimulator: {fileID: 1411796494}
+  _damageSimulator: {fileID: 231378142}
 --- !u!1 &458877898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _barScale: {fileID: 589829814}
-  _health: {fileID: 1234085398}
+  _health: {fileID: 1234085401}
 --- !u!114 &589829816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,8 +1229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1a02bdfe549f54e8e16ff365a55408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pillButton: {fileID: 1411796490}
-  _damageButton: {fileID: 231378143}
+  _pillSimulator: {fileID: 1411796494}
+  _damageSimulator: {fileID: 231378142}
 --- !u!1 &662745167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,7 @@ GameObject:
   - component: {fileID: 1234085397}
   - component: {fileID: 1234085400}
   - component: {fileID: 1234085399}
-  - component: {fileID: 1234085398}
+  - component: {fileID: 1234085401}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -1601,20 +1601,6 @@ RectTransform:
   m_AnchoredPosition: {x: 70.13818, y: -15.220642}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1234085398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234085396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1a02bdfe549f54e8e16ff365a55408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pillButton: {fileID: 1411796490}
-  _damageButton: {fileID: 231378143}
 --- !u!114 &1234085399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,7 +1608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234085396}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1712,6 +1698,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234085396}
   m_CullTransparentMesh: 1
+--- !u!114 &1234085401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234085396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1a02bdfe549f54e8e16ff365a55408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pillSimulator: {fileID: 1411796494}
+  _damageSimulator: {fileID: 231378142}
 --- !u!1 &1361348008
 GameObject:
   m_ObjectHideFlags: 0
