@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     public float MaxHealth { get; private set; }
     public float CurrentHealth { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         MaxHealth = _maxHealth;
         CurrentHealth = _maxHealth;
